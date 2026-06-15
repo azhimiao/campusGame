@@ -1,0 +1,81 @@
+{
+  "seed_id": "campus_after_school",
+  "display_name": "After School · SCAR",
+  "narrative_title": "放学之后",
+  "game_id": "campus",
+  "subtitle": "松川高中，四月到六月，六十三天。有些人的微笑是求救信号。",
+  "school": "松川高中",
+  "start_date": "4月8日",
+  "days_total": 63,
+  "phases_total": 12,
+  "start_location": "classroom",
+  "locations": {
+    "classroom": {"name": "教室", "scent": "粉笔灰与便当", "sound": "翻书、上课铃"},
+    "corridor": {"name": "走廊", "scent": "消毒水", "sound": "脚步回音"},
+    "rooftop": {"name": "天台", "scent": "风与远处海水咸味", "sound": "风声"},
+    "library": {"name": "图书馆", "scent": "旧纸张与木头", "sound": "翻页、空调低频"},
+    "gate_slope": {"name": "校门口坡道", "scent": "樱花/梅雨/夏日沥青", "sound": "自行车铃、电车"},
+    "music_room": {"name": "废弃音乐教室", "scent": "灰尘与松香", "sound": "安静到耳鸣"},
+    "levee": {"name": "河堤", "scent": "河水与野草", "sound": "水流、蛙鸣"}
+  },
+  "npcs": {
+    "xia_yang": {
+      "name": "夏阳",
+      "role": "班长表象 · 独居",
+      "trait": "练习过的微笑；冰箱常只有鸡蛋和米饭；书包侧袋永远有折叠伞",
+      "initial_trust": 0.48,
+      "initial_tags": ["好奇的礼貌"]
+    },
+    "cheng_yu": {
+      "name": "程雨",
+      "role": "最后一排 · 六年守护",
+      "trait": "冷漠是节能模式；小学五年级被夏阳背去保健室；笔记本里涂黑的名字",
+      "initial_trust": 0.42,
+      "initial_tags": ["无兴趣的礼貌", "暗中观察"]
+    }
+  },
+  "skill_verbs": {
+    "observe": ["看光线、气味、谁缺席", "注意微笑是否到达眼睛"],
+    "listen": ["等对方把句号说完", "在沉默里待着"],
+    "approach": ["靠近、同席、并肩", "不追问也可以在场"],
+    "withhold": ["不揭穿、不替对方总结", "把问题留在明天"],
+    "ask_ok": ["你还好吗", "不必安慰，只要听见"],
+    "anchor_read": ["辨认锚点条件", "记下记忆碎片"],
+    "scene_close": ["留白收束", "推进到下一时段"]
+  },
+  "anchors": {
+    "anchor_umbrella": "下雨天夏阳递出折叠伞；若追问「为何带两把」她会愣住",
+    "anchor_piano": "废弃音乐教室走音钢琴；夏阳弹到一半停住，或程雨说「从她在这里弹琴时起」",
+    "anchor_line": "深夜 LINE：睡了吗 / 今天谢谢你 / 一张天花板照片",
+    "anchor_notebook": "程雨笔记本角落涂黑的「夏阳」；他说：别告诉她",
+    "anchor_fireworks": "学园祭烟花下夏阳无声流泪：对不起，烟花太刺眼了",
+    "anchor_letter": "夏阳离开后储物柜里的手写信：展信佳……会笑的夏阳不是假的"
+  },
+  "endings": {
+    "smile_fell": {
+      "id": "smile_fell",
+      "title": "微笑碎掉",
+      "condition": "gentle, anchor_fireworks, xia_trust >= 0.62"
+    },
+    "the_question": {
+      "id": "the_question",
+      "title": "你还好吗",
+      "condition": "gentle, asked_ok, xia_trust >= 0.58"
+    },
+    "entrusted": {
+      "id": "entrusted",
+      "title": "拜托你了",
+      "condition": "watch_cheng, anchor_notebook, cheng_trust >= 0.58"
+    },
+    "the_letter": {
+      "id": "the_letter",
+      "title": "展信佳",
+      "condition": "anchor_letter or (smile_fell path + departure)"
+    },
+    "unasked": {
+      "id": "unasked",
+      "title": "从未问起",
+      "condition": "polite or surface_only"
+    }
+  }
+}
